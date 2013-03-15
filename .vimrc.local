@@ -11,8 +11,10 @@
 
 " General {
   " Changing Vim's idea of the terminal.
-  if match($TERM, "screen")!=-1
-    set term=xterm-256color  " while running in GNU screen override TERM
+  if !has('gui_running')
+    if match($TERM, "screen")!=-1
+      set term=xterm-256color  " while running in GNU screen override TERM
+    endif
   endif
 
   " I like to have a different background in GUI and terminal modes,
@@ -138,20 +140,18 @@
 " C/C++ Settings {
   " Detecting file type for C++ standard headers with vim.
   au BufRead * if search('\M-*- C++ -*-', 'n', 1) | setlocal ft=cpp | endif
+
+  " On buffer save generate local tags file (non-recursive as it should be fast).
+  au BufWritePost * if &ft =~ 'cpp' | silent !ctags --c++-kinds=+p --fields=+iaS --extra=+q .
 " }"
 
 " Keyboard mappings {
   " Ctags generation.
-  if has('gui_running')
-    " Re-generate ctags
-    au FileType * execute "map <Leader>8 :echomsg 'No ctags mapping defined for ' . &filetype . ' filetype'<CR>"
-    au FileType cpp execute "map <Leader>8 :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f " . g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR>"
-  else
-    " Re-generate ctags
-    " Press Ctrl-V while in Insert mode, and then the required key.
-    au FileType * execute "map <Leader>8 :echomsg 'No ctags mapping defined for ' . &filetype . ' filetype'<CR>"
-    au FileType cpp execute "map <Leader>8 :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f " . g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR>"
-  endif
+  "
+  " Re-generate ctags
+  " To get mapping characters, press Ctrl-V while in Insert mode, and then the required key.
+  au FileType * execute "map <Leader>8 :echomsg 'No ctags mapping defined for ' . &filetype . ' filetype'<CR>"
+  au FileType cpp execute "map <Leader>8 :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f " . g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR>"
 
   nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>  " Press Space to turn
                                                        " off highlighting and
