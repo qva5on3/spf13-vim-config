@@ -56,23 +56,24 @@
 
 " Bundles {
   " UnBundle unnecessary Vundle bundles (plugins)
-  " Remember to run ':BundleClean!' after this to remove the existing directories
-
-  " PHP
-    UnBundle  'spf13/PIV'
-  " Java
-    UnBundle 'derekwyatt/vim-scala'
-    UnBundle 'derekwyatt/vim-sbt'
-  " Ruby
-    UnBundle 'tpope/vim-rails'
-  
-  
-  " Those plugins don't properly work for me with basic configuration.
+  " Remember to run ':BundleClean!' after this to remove
+  " the existing directories.
   "
-  " Source Control
-    UnBundle 'tpope/vim-fugitive'
-  " Check syntax
+  " Those plugins don't properly work for me with basic configuration.
+
+  " General Programming
+  if count(g:spf13_bundle_groups, 'programming')
+    " Pick one of the checksyntax, jslint, or syntastic
     UnBundle 'scrooloose/syntastic'
+    "UnBundle 'tpope/vim-fugitive'
+  endif
+
+  " Misc
+  if count(g:spf13_bundle_groups, 'misc')
+    UnBundle 'tpope/vim-cucumber'
+    UnBundle 'quentindecock/vim-cucumber-align-pipes'
+    UnBundle 'Puppet-Syntax-Highlighting'
+  endif
 " }
 
 

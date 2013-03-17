@@ -5,3 +5,6 @@
   "let g:spf13_no_autochdir = 1
 " }
 
+" In your .vimrc.bundles.local file"
+" list only the plugin groups you will use
+let g:spf13_bundle_groups = ['general', 'neocomplcache', 'programming', 'python', 'javascript', 'html', 'misc']
