@@ -107,6 +107,14 @@
       "let g:NERDTreeChDirMode=0  " Prevent NERDTree from changing the CWD
     " }
 
+    " vim-autoclose {
+      " Note: in Vim files (including .vimrc), you may not want pairing of "
+      " because it is the comment character. If you set a value for
+      " g:autoclose_vim_commentmode, the " character will not be paired if Vim
+      " considers the current buffer to be a Vim file.
+      let g:autoclose_vim_commentmode = 1
+    " }
+
     " ctrlp {
       "When starting up, CtrlP sets its local working directory according to
       "this variable: 0 - disable this feature
