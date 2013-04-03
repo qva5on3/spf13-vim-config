@@ -25,6 +25,8 @@
       set background=dark  "in Terminal use dark background
   endif
 
+  set nospell  " disable spell checking
+
 " }
 
 " GUI Settings {
