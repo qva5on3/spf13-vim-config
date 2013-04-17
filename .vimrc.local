@@ -19,14 +19,19 @@
 
   " I like to have a different background in GUI and terminal modes,
   " so I can use the following if-then.
-  if has('gui_running')
+  "if match($VIMBACKGROUND, "light|dark")
+  "  set background=$VIMBACKGROUND
+  "else 
+    if has('gui_running')
       set background=light  " in GUI run with light background
-  else
+    else
       set background=dark  "in Terminal use dark background
-  endif
+    endif
+  "endif
 
   set nospell  " disable spell checking
 
+  set list!  " hide unprintable characters
 " }
 
 " GUI Settings {
@@ -52,8 +57,13 @@
   set textwidth=80  " maximum text width
   set wrap  " should automatically wrap text longer than 80 characters
 
-  highlight OverLength ctermbg=red ctermfg=white guibg=#592929  " mark long
-  match OverLength /\%80v.*/                                    " columns
+  " Marks long columns depeding on background color.
+  if &background == 'dark' 
+    highlight OverLength ctermbg=black guibg=#592929
+  else
+    highlight OverLength ctermbg=lightgrey guibg=#592929
+  endif
+  match OverLength /\%80v.*/
 " }
 
 " Bundles {
