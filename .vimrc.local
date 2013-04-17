@@ -12,22 +12,24 @@
 " General {
   " Changing Vim's idea of the terminal.
   if !has('gui_running')
-    if match($TERM, "screen")!=-1
+    if match($TERM, "screen") != -1
       set term=xterm-256color  " while running in GNU screen override TERM
     endif
   endif
 
   " I like to have a different background in GUI and terminal modes,
   " so I can use the following if-then.
-  "if match($VIMBACKGROUND, "light|dark")
-  "  set background=$VIMBACKGROUND
-  "else 
+  if !empty($SOLARIZEDBACKGROUND)
+    if match(['light', 'dark'], $SOLARIZEDBACKGROUND) != -1
+      let &background=$SOLARIZEDBACKGROUND
+    endif
+  else
     if has('gui_running')
       set background=light  " in GUI run with light background
     else
       set background=dark  "in Terminal use dark background
     endif
-  "endif
+  endif
 
   set nospell  " disable spell checking
 
@@ -35,7 +37,7 @@
 " }
 
 " GUI Settings {
-  set guifont=Inconsolata\ 12
+  set guifont=Inconsolata\ 11
 " }
 
 " Formatting {
@@ -59,9 +61,9 @@
 
   " Marks long columns depeding on background color.
   if &background == 'dark' 
-    highlight OverLength ctermbg=black guibg=#592929
+    highlight OverLength ctermbg=black guibg=#073642
   else
-    highlight OverLength ctermbg=lightgrey guibg=#592929
+    highlight OverLength ctermbg=lightgrey guibg=#eee8d5
   endif
   match OverLength /\%80v.*/
 " }
