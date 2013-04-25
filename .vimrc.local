@@ -174,8 +174,16 @@
   "
   " Re-generate ctags
   " To get mapping characters, press Ctrl-V while in Insert mode, and then the required key.
-  au FileType c,cpp execute "map <Leader>8 :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f " . g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR>"
-  au FileType * execute "map <Leader>8 :echomsg 'No ctags mapping defined for ' . &filetype . ' filetype'<CR>"
+  au FileType * execute "map <Leader>8 :"
+        \ . "echomsg 'No ctags mapping defined for ' . &filetype . ' "
+        \ . "filetype'<CR>"
+  au FileType c,cpp,python execute "map <Leader>8 :"
+        \ . "!ctags -R --languages=c++,python "
+        \ . "--links=no "
+        \ . "--c++-kinds=+p "
+        \ . "--fields=+iaS --extra=+q "
+        \ . "-f " g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR><CR>"
+ 
 
   " It is needed as only inverse hightlight, is already present in
   " spf-13 config.
