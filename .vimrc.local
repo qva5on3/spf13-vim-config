@@ -178,7 +178,7 @@
         \ . "echomsg 'No ctags mapping defined for ' . &filetype . ' "
         \ . "filetype'<CR>"
   au FileType c,cpp,python execute "map <Leader>8 :"
-        \ . "!ctags -R --languages=c++,python "
+        \ . "!ctags -R --languages=c,c++,python "
         \ . "--links=no "
         \ . "--c++-kinds=+p "
         \ . "--fields=+iaS --extra=+q "
