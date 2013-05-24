@@ -37,7 +37,7 @@
 " }
 
 " GUI Settings {
-  set guifont=Inconsolata\ 11
+  set guifont=Inconsolata\ 12
 " }
 
 " Formatting {
@@ -88,6 +88,11 @@
     UnBundle 'tpope/vim-cucumber'
     UnBundle 'quentindecock/vim-cucumber-align-pipes'
     UnBundle 'Puppet-Syntax-Highlighting'
+  endif
+  " 
+  " Python
+  if count(g:spf13_bundle_groups, 'python')
+    UnBundle 'klen/python-mode'
   endif
 " }
 
@@ -170,6 +175,12 @@
 " }"
 
 " Keyboard mappings {
+  " Does not automatically maximize windows on switching
+  map <C-J> <C-W>j
+  map <C-K> <C-W>k
+  map <C-L> <C-W>l
+  map <C-H> <C-W>h
+
   " Ctags generation.
   "
   " Re-generate ctags
