@@ -142,6 +142,7 @@
 
       nnoremap <silent> <Leader>ctrp :CtrlP<CR>
       nnoremap <silent> <Leader>ctrb :CtrlPBuffer<CR>
+      nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
       nnoremap <silent> <Leader>ctrm :CtrlPMRU<CR>
 
       let g:ctrlp_user_command = {
