@@ -1,0 +1,6 @@
+set tags+=/path/to/global/tags/file
+set tags+=/path/to/local/tags/file
+
+let g:q_indent_width=4
+let g:q_ctags_top_dir=/path/to/local/tag/file
+
