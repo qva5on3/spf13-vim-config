@@ -173,6 +173,29 @@
 
   " On buffer save generate local tags file (non-recursive as it should be fast).
   "au BufWritePost * if &ft =~ 'cpp' | silent !ctags --c++-kinds=+p --fields=+iaS --extra=+q .
+  
+  " OmniCppComplete
+  "
+  let OmniCpp_NamespaceSearch = 1
+  let OmniCpp_GlobalScopeSearch = 1
+  let OmniCpp_ShowAccess = 1
+  let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+  let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+  let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+  let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+  let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+  
+  " Without preview option (working with Neocompletecache).
+  "
+  set completeopt=menuone,menu,longest
+
+  " As Neocompletecache does not support preview window, 
+  " this functionality has been deliberately disabled.
+  "
+  " automatically open and close the popup menu / preview window
+  "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+  "set completeopt=menuone,menu,longest,preview
+
 " }"
 
 " Keyboard mappings {
@@ -186,14 +209,14 @@
   "
   " Re-generate ctags
   " To get mapping characters, press Ctrl-V while in Insert mode, and then the required key.
+  "au FileType * execute "map <Leader>8 :"
+  "      \ . "echomsg 'No ctags mapping defined for ' . &filetype . ' "
+  "      \ . "filetype'<CR>"
   au FileType * execute "map <Leader>8 :"
-        \ . "echomsg 'No ctags mapping defined for ' . &filetype . ' "
-        \ . "filetype'<CR>"
-  au FileType c,cpp,python execute "map <Leader>8 :"
-        \ . "!ctags -R --languages=c,c++,python "
-        \ . "--links=no "
+        \ . "!ctags -R "
+        \ . "--sort=yes "
         \ . "--c++-kinds=+p "
-        \ . "--fields=+iaS --extra=+q "
+        \ . "--fields=+iaSt --extra=+q "
         \ . "-f " g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR><CR>"
  
 
@@ -206,3 +229,6 @@
                                                        " clear any message
                                                        " already displayed.
   " }
+  
+
+
