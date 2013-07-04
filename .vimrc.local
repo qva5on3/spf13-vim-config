@@ -153,6 +153,19 @@
           \ 'fallback': 'find %s -type f'
       \ }
     " }
+    
+    " neocomplcache {
+      if count(g:spf13_bundle_groups, 'neocomplcache')
+          unlet g:neocomplcache_max_list
+      endif
+      
+      if !exists('g:neocomplcache_omni_patterns')
+          let g:neocomplcache_omni_patterns = {}
+      endif
+      let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+    " }
+
+    
   " }
 " }
 
@@ -180,14 +193,19 @@
   let OmniCpp_GlobalScopeSearch = 1
   let OmniCpp_ShowAccess = 1
   let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-  let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-  let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-  let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
   let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+  
+  " Lets Neocompletecache takes care about auto completion.
+  "
+  let OmniCpp_MayCompleteDot = 0 " autocomplete after .
+  let OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
+  let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
+
   
   " Without preview option (working with Neocompletecache).
   "
-  set completeopt=menuone,menu,longest
+  "set completeopt=menuone,menu,longest
+  set completeopt-=preview
 
   " As Neocompletecache does not support preview window, 
   " this functionality has been deliberately disabled.
