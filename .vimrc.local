@@ -113,6 +113,10 @@
   endif
 
   " General {
+    " A list of file patterns which will be used to exclude
+    " files when completing file or directory names.
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.obj
+
     " Ignore autocommand events set for BufEnter
     " set eventignore+=BufEnter
     " Most prefer to automatically switch to the current file directory when
@@ -142,15 +146,17 @@
 
       nnoremap <silent> <Leader>ctrp :CtrlP<CR>
       nnoremap <silent> <Leader>ctrb :CtrlPBuffer<CR>
-      nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
       nnoremap <silent> <Leader>ctrm :CtrlPMRU<CR>
-
+      nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+      
+      " Fallback search ignores .svn directories.
+      "
       let g:ctrlp_user_command = {
           \ 'types': {
               \ 1: ['.git', 'cd %s && git ls-files && cd -'],
               \ 2: ['.hg', 'hg --cwd %s locate -I .'],
           \ },
-          \ 'fallback': 'find %s -type f'
+          \ 'fallback': 'find %s -type d -name .svn -prune -o -type f -print'
       \ }
     " }
     
