@@ -138,6 +138,11 @@
       " considers the current buffer to be a Vim file.
       let g:autoclose_vim_commentmode = 1
     " }
+    
+    " vim-airline {
+      " Enables powerlines fonts.
+      let g:airline_powerline_fonts = 1
+    " }
 
     " ctrlp {
       "When starting up, CtrlP sets its local working directory according to
@@ -242,9 +247,12 @@
   "      \ . "--c++-kinds=+p "
   "      \ . "--fields=+iaSt --extra=+q "
   "      \ . "-f " g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR><CR>"
+  
+  " For case insensitive searching enable fold-case sorting for ctags files.
+  " It should make searching a lot faster.
   execute "map <Leader>8 :"
         \ . "!ctags -R "
-        \ . "--sort=yes "
+        \ . "--sort=foldcase "
         \ . "--c++-kinds=+p "
         \ . "--fields=+iaSt --extra=+q "
         \ . "-f " g:q_ctags_output_file . " " . g:q_ctags_top_dir . "<CR><CR>"
