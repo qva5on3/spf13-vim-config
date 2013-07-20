@@ -57,7 +57,7 @@
   set autoindent
 
   set textwidth=80  " maximum text width
-  set wrap  " should automatically wrap text longer than 80 characters
+  "set wrap  " should automatically wrap text longer than 80 characters
 
   " Marks long columns depeding on background color.
   if &background == 'dark' 
@@ -77,6 +77,10 @@
 
   " General Programming
   if count(g:spf13_bundle_groups, 'programming')
+    " Disable autoclose
+    UnBundle 'spf13/vim-autoclose'
+    " Disable automtic surrounding with quote or bracket characters.
+    "UnBundle 'tpope/vim-surround'
     " Pick one of the checksyntax, jslint, or syntastic
     UnBundle 'scrooloose/syntastic'
     "UnBundle 'tpope/vim-fugitive'
@@ -126,6 +130,10 @@
   " }
 
   " Plugins {
+    " vim-airline {
+      let g:airline_powerline_fonts = 1
+    " }
+    
     " NERDTree {
       let g:NERDTreeDirArrows=0  " Fix NERDTree problem with entering sub dirs
       "let g:NERDTreeChDirMode=0  " Prevent NERDTree from changing the CWD
@@ -173,6 +181,7 @@
       if !exists('g:neocomplcache_omni_patterns')
           let g:neocomplcache_omni_patterns = {}
       endif
+      let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
       let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
     " }
 
