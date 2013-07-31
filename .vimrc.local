@@ -165,7 +165,7 @@
               \ 1: ['.git', 'cd %s && git ls-files && cd -'],
               \ 2: ['.hg', 'hg --cwd %s locate -I .'],
           \ },
-          \ 'fallback': 'find %s -type d -name .svn -prune -o -type f -print'
+          \ 'fallback': 'find %s -type d -name .svn -prune -o -type f -name "*[o|a]$" -prune -o -type f -print'
       \ }
     " }
     
@@ -175,19 +175,19 @@
           unlet g:neocomplcache_max_list
       endif
       
-      "if !exists('g:neocomplcache_omni_patterns')
-      "    let g:neocomplcache_omni_patterns = {}
-      "endif
-      "let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-      "let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+      if !exists('g:neocomplcache_omni_patterns')
+          let g:neocomplcache_omni_patterns = {}
+      endif
+      let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+      let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
       " For below type expression types, overrides neocomplcache omni_complete
       " with direct call to omnifunc.
-      if !exists('g:neocomplcache_force_omni_patterns')
-          let g:neocomplcache_force_omni_patterns = {}
-      endif
-      let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-      let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+      "if !exists('g:neocomplcache_force_omni_patterns')
+      "    let g:neocomplcache_force_omni_patterns = {}
+      "endif
+      "let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+      "let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
     " }
 
@@ -252,6 +252,9 @@
   map <C-K> <C-W>k
   map <C-L> <C-W>l
   map <C-H> <C-W>h
+
+  " Shows svn blame in visual mode on highlighted lines.
+  vmap <Leader>bl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
   " Ctags generation.
   "
