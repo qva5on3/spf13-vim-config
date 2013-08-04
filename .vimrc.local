@@ -253,6 +253,22 @@
   map <C-L> <C-W>l
   map <C-H> <C-W>h
 
+  " Grep {
+    " Recommended installing ack-grep, which is a grep-like utility designed
+    " specifically for grepping source code files. Then configure vim to use
+    " it instead of regular grep.
+    set grepprg=ack-grep\ --cpp\ --cc\ --perl\ --python\ --make
+    " Pressing <Leader>gr will grep source code files recursively,
+    " starting from the vim's current working directory, for the word under
+    " the cursor. Results are put inside 'quickfix' window.
+    nmap <Leader>gr :grep <C-R>=expand("<cword>")<CR><CR>
+    " Navigate through quickfix entries by calling :cnext and :cprev.
+    :map <Leader>qw :botright cwindow<CR>
+    :map <Leader>qp :cprev<CR>
+    :map <Leader>qn :cnext<CR>
+  " }
+
+
   " Shows svn blame in visual mode on highlighted lines.
   vmap <Leader>bl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
