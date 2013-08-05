@@ -263,9 +263,9 @@
     " the cursor. Results are put inside 'quickfix' window.
     nmap <Leader>gr :grep <C-R>=expand("<cword>")<CR><CR>
     " Navigate through quickfix entries by calling :cnext and :cprev.
-    :map <Leader>qw :botright cwindow<CR>
-    :map <Leader>qp :cprev<CR>
-    :map <Leader>qn :cnext<CR>
+    map <Leader>qw :botright cwindow<CR>
+    map <Leader>qp :cprev<CR>
+    map <Leader>qn :cnext<CR>
   " }
 
 
