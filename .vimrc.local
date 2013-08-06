@@ -56,7 +56,9 @@
   set expandtab  " put spaces instead of tab character
   set autoindent
 
-  set textwidth=80  " maximum text width
+  "set textwidth=80  " maximum text width
+  set textwidth = 0  " disables textwidth to make completion 
+                     " working for long lines.
   "set wrap  " should automatically wrap text longer than 80 characters
 
   " Marks long columns depeding on background color.
