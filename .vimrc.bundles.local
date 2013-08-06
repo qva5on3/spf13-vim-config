@@ -3,6 +3,13 @@
   " a new buffer is opened; to prevent this behavior, add the following to
   " your .vimrc.bundles.local file:
   "let g:spf13_no_autochdir = 1
+  "
+  " Plugins {
+    " Solarized theme {
+    " Does use italic fonts.
+    let g:solarized_italic = 0   
+  " }
+
 " }
 
 " In your .vimrc.bundles.local file"
