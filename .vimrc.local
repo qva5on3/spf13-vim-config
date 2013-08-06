@@ -130,6 +130,11 @@
   " }
 
   " Plugins {
+    " Solarized theme {
+      " Does use italic fonts.
+      let g:solarized_italic = 0   
+    " }
+
     " NERDTree {
       let g:NERDTreeDirArrows=0  " Fix NERDTree problem with entering sub dirs
       "let g:NERDTreeChDirMode=0  " Prevent NERDTree from changing the CWD
