@@ -57,17 +57,17 @@
   set autoindent
 
   "set textwidth=80  " maximum text width
-  set textwidth = 0  " disables textwidth to make completion 
+  set textwidth=0  " disables textwidth to make completion 
                      " working for long lines.
   "set wrap  " should automatically wrap text longer than 80 characters
 
   " Marks long columns depeding on background color.
-  "if &background == 'dark' 
-  "  highlight OverLength ctermbg=black guibg=#073642
-  "else
-  "  highlight OverLength ctermbg=lightgrey guibg=#eee8d5
-  "endif
-  "match OverLength /\%80v.*/
+  if &background == 'dark' 
+    highlight OverLength ctermbg=black guibg=#073642
+  else
+    highlight OverLength ctermbg=lightgrey guibg=#eee8d5
+  endif
+  match OverLength /\%80v.*/
 " }
 
 " Bundles {
