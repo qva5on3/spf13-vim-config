@@ -67,7 +67,12 @@
   else
     highlight OverLength ctermbg=lightgrey guibg=#eee8d5
   endif
-  match OverLength /\%80v.*/
+  " Sets priority lower than hlsearch. Effectively highlights search matches.
+  if exists('w:overlengthmatch')
+      call matchdelete(w:overlengthmatch)
+  endif
+  let w:overlengthmatch = matchadd('OverLength', '\%80v.*', -1)
+
 " }
 
 " Bundles {
