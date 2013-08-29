@@ -1,4 +1,7 @@
 " General {
+  " To disable views add the following to your .vimrc.bundles.local.
+  "let g:spf13_no_views = 1
+
   " Most prefer to automatically switch to the current file directory when
   " a new buffer is opened; to prevent this behavior, add the following to
   " your .vimrc.bundles.local file:
