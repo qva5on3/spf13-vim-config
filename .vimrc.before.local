@@ -1,0 +1,4 @@
+" airline {
+  " Use powerline's fonts.
+  let g:airline_powerline_fonts=1
+" }
